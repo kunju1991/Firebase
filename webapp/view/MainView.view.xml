@@ -1,0 +1,69 @@
+<mvc:View controllerName="com.demo.FirebaseChat.controller.MainView" xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
+	<App id="idAppControl">
+        <pages>
+            <Page title="{i18n>title}">
+                <content>
+                    <InputListItem label="Email">
+                        <Input id="email" type="Email" width="250px"/>
+                    </InputListItem>
+                    <InputListItem label="Password">
+                        <Input id="password" type="Password" width="250px"/>
+                    </InputListItem>
+                    <InputListItem type="Active" press="onLogin">
+                        <FlexBox alignItems="Center" justifyContent="Center">
+                            <items>
+                                <Text text="Login"/>
+                            </items>
+                        </FlexBox>
+                    </InputListItem>
+                    <InputListItem>
+                        <FlexBox alignItems="Center" justifyContent="Center">
+                            <items>
+                                <Text text="Logged in as {userModel>/currentUser}"/>
+                            </items>
+                        </FlexBox>
+                    </InputListItem>
+                    <InputListItem label="Select User">
+                        <ComboBox items="{userModel>/users}" showSecondaryValues="true" width="250px" selectionChange="onSelectUser">
+                            <core:ListItem key="{userModel>email}" text="{userModel>name}" additionalText="{userModel>email}"/>
+                        </ComboBox>
+                    </InputListItem>
+                    <Table id="chatTable" items="{chatModel>/chats}">
+                        <columns>
+                            <Column>
+                                <Text text="Timestamp"/>
+                            </Column>
+                            <Column>
+                                <Text text="Email"/>
+                            </Column>
+                            <Column>
+                                <Text text="Text"/>
+                            </Column>
+                            <Column hAlign="Right"></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{chatModel>message/timestamp}"/>
+                                    <Text text="{chatModel>message/email}"/>
+                                    <Text text="{chatModel>message/text}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                    <InputListItem label="New Message">
+                        <Input id="newMessage" width="250px"/>
+                    </InputListItem>
+                    <InputListItem type="Active" press="onSendNewMessage">
+                        <FlexBox alignItems="Center" justifyContent="Center">
+                            <items>
+                                <Text text="Send Message"/>
+                            </items>
+                        </FlexBox>
+                    </InputListItem>
+                </content>
+            </Page>
+        </pages>
+    </App>
+</mvc:View>
